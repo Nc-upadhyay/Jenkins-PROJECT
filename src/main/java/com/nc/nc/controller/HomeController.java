@@ -24,6 +24,10 @@ public class HomeController {
     public ResponseEntity singIn(@PathVariable String username, @PathVariable String password) {
         return myService.signIn(username, password);
     }
+    @GetMapping("/")
+    public String index(){
+        return "Wel come this is index page ";
+    }
 
     @Operation(summary = "summery",description = "This is used to for sign up ")
     @PostMapping("/sign-up")
