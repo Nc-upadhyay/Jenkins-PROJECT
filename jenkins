@@ -1,0 +1,42 @@
+pipeline {
+    agent any
+    tools{
+        maven 'MAVEN_PATH'
+    }
+    
+    stages {
+          stage("pull"){
+            steps{
+                checkout scmGit(branches: [[name: '*/master']],
+                extensions: [],
+                userRemoteConfigs: [[url: 'https://github.com/Nc-upadhyay/Jenkins-PROJECT.git']])
+            }
+        }
+        stage('build') {
+            steps {
+                // Build your application (e.g., Maven)
+                bat 'mvn clean package'
+            }
+            post {
+                success {
+                    echo 'Archiving the artifact **************************'
+                    archiveArtifacts artifacts: '**/target/*.war'
+                    echo "Post build step ************************"
+                }
+                failure {
+                    echo "Build failed *******************************"
+                }
+            }
+        }
+        
+        stage('deploy') {
+            steps {
+                // Deploy to Tomcat
+                deploy adapters: [tomcat9(credentialsId: '63b825d1-d5f9-4ee4-80fc-9ff82a7a6c9b', 
+                path: '', url: 'http://localhost:8090/')], 
+                contextPath: 'task', onFailure: false, 
+                war: '**/*.war'
+            }
+        }
+    }
+}
