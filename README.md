@@ -1,9 +1,14 @@
 
 
 
+https://github.com/Nc-upadhyay/Jenkins-PROJECT/assets/108361583/27a24a73-ae33-46d1-a8c1-3a86c73f7eb0
+
+
+
 
 
 ![Screenshot (85)](https://github.com/Nc-upadhyay/Jenkins-PROJECT/assets/108361583/e2d0d763-73c3-4530-a550-5d529822ce04)
+
 
 
 ## Jenkins Pipeline Script Explanation
